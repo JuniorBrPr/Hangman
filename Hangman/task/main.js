@@ -38,7 +38,9 @@ function play() {
 
     let attempts = 8;
     do {
+        let score = 0;
         preview = "";
+
         for (let i = 0; i < userGuess.length; i++) {
             preview += userGuess[i];
         }
@@ -57,6 +59,9 @@ function play() {
                         userGuess[i] = randomWord.charAt(i);
                         appears = true;
                     }
+                    if (randomWord[i] === userGuess[i]) {
+                        ++score;
+                    }
                 }
             } else {
                 console.log("You've already guessed this letter.");
@@ -68,13 +73,6 @@ function play() {
                 console.log("That letter doesn't appear in the word.")
                 usedLetters.set(letter, letter);
                 attempts--;
-            }
-
-            let score = 0;
-            for (let i = 0; i < randomWord.length; i++) {
-                if (randomWord[i] === userGuess[i]) {
-                    ++score;
-                }
             }
 
             if (score === arr.length) {
